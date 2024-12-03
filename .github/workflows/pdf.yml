@@ -1,6 +1,7 @@
 name: Generate PDF
 
 on:
+  workflow_dispatch:
   release:
     types: [published]
 
