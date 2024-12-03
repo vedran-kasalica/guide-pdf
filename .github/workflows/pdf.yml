@@ -36,7 +36,5 @@ jobs:
 
 
       - name: Upload PDF to Zenodo
-        run: npx --package @iomeg/zenodo-upload zenodo_upload --sandbox 139342 guide-nlesc.pdf 1.3 ${{ secrets.ZENODO_TOKEN }}
-        env:
-          github_ref: ${{ github.ref }}
+        run: npx --package @iomeg/zenodo-upload zenodo_upload --sandbox 139342 guide-nlesc.pdf "${{ github.ref_name }}" ${{ secrets.ZENODO_TOKEN }}
 
