@@ -32,12 +32,12 @@ jobs:
 
       - name: Generate PDF using the Docker image
         run: |
-          docker run --rm \
+          docker run --rm --privileged \
             -v "${{ github.workspace }}/":/home/node/docs:ro \
             -v "${{ github.workspace }}/":/home/node/pdf:rw \
             -v "${{ github.workspace }}/images/SoftDevGuide-cover.pdf":/home/node/resources/cover.pdf:ro \
             -e "PDF_OUTPUT_NAME=guide-nlesc.pdf" \
-            ghcr.io/kernoeb/docker-docsify-pdf:latest
+            ghcr.io/kernoeb/docker-docsify-pdf:latest 
 
       - name: Adjust permissions on generated PDF
         run: sudo chown $USER:$GROUPS guide-nlesc.pdf
