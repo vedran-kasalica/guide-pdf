@@ -1,3 +1,4 @@
 contents:
   - _sidebar.md
 pathToPublic: guide-nlesc.pdf
+pdfOptions: "--no-sandbox"

@@ -10,15 +10,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Change absolute paths to relative
         run: perl -pi -e 's@\]\(\/@\]\(@' _sidebar.md
+
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
+
       - name: Install converter + uploader
         run: npm install docsify-pdf-converter @iomeg/zenodo-upload
+
+      - name: Install Dependencies for Puppeteer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 \
+            libatk-bridge2.0-0 \
+            libx11-xcb1 \
+            libxcomposite1 \
+            libxcursor1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxi6 \
+            libxtst6 \
+            libpangocairo-1.0-0 \
+            libgtk-3-0 \
+            libxrandr2 \
+            libcups2 \
+            libxss1 \
+            libgbm1
+
       - name: Generate PDF
         run: npx docsify-pdf-converter
+
+
       - name: Upload PDF to Zenodo
         run: npx --package @iomeg/zenodo-upload zenodo_upload 138987 guide-nlesc.pdf "${github_ref:10}" ${{ secrets.ZENODO_TOKEN }}
         env:
