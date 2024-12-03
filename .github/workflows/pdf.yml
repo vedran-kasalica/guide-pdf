@@ -24,6 +24,12 @@ jobs:
       - name: Pull Docker image
         run: docker pull ghcr.io/kernoeb/docker-docsify-pdf:latest
 
+      - name: Pull Docker image
+        run: |
+          pwd
+          echo "${{ github.workspace }}/"
+          tree "${{ github.workspace }}/"
+
       - name: Generate PDF using the Docker image
         run: |
           docker run --rm \
