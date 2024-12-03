@@ -34,8 +34,5 @@ jobs:
             -e "PDF_OUTPUT_NAME=guide-nlesc.pdf" \
             ghcr.io/kernoeb/docker-docsify-pdf:main
 
-      - name: Adjust permissions on generated PDF
-        run: sudo chown $USER:$GROUPS guide-nlesc.pdf
-
       - name: Upload PDF to Zenodo
         run: npx --package @iomeg/zenodo-upload zenodo_upload --sandbox 138987 guide-nlesc.pdf "${{ github.ref_name }}" ${{ secrets.ZENODO_TOKEN }}
