@@ -37,7 +37,7 @@ jobs:
             -v "${{ github.workspace }}/":/home/node/pdf:rw \
             -v "${{ github.workspace }}/images/SoftDevGuide-cover.pdf":/home/node/resources/cover.pdf:ro \
             -e "PDF_OUTPUT_NAME=guide-nlesc.pdf" \
-            ghcr.io/kernoeb/docker-docsify-pdf:latest 
+            ghcr.io/kernoeb/docker-docsify-pdf:main
 
       - name: Adjust permissions on generated PDF
         run: sudo chown $USER:$GROUPS guide-nlesc.pdf
