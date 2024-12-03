@@ -1,4 +1,4 @@
-name: Generate PDF-new-entry
+name: Generate PDF-new-entry-v
 
 on:
   workflow_dispatch:
@@ -19,5 +19,5 @@ jobs:
         run: npm install @iomeg/zenodo-upload
 
       - name: Upload PDF to Zenodo
-        run: npx --package @iomeg/zenodo-upload zenodo_upload --sandbox 139342 guide-nlesc.pdf v1.3 ${{ secrets.ZENODO_TOKEN }}
+        run: npx --package @iomeg/zenodo-upload zenodo_upload --sandbox 139342 guide-nlesc.pdf 1.3 ${{ secrets.ZENODO_TOKEN }}
 
