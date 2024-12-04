@@ -43,6 +43,7 @@ jobs:
 
 
       - name: Upload PDF to Zenodo
+        if: github.event_name == 'release'
         run: npx --package @iomeg/zenodo-upload zenodo_upload --sandbox 139404 guide-nlesc.pdf "${github_ref:10}" ${{ secrets.ZENODO_TOKEN }}
         env:
           github_ref: ${{ github.ref }}
