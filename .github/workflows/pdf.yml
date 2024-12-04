@@ -33,6 +33,13 @@ jobs:
             --user $(id -u):$(id -g) \
             -e "PDF_OUTPUT_NAME=guide-nlesc.pdf" \
             ghcr.io/kernoeb/docker-docsify-pdf:latest
+        
+      - name: Upload PDF as an artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-pdf
+          path: guide-nlesc.pdf
 
 
       - name: Upload PDF to Zenodo
